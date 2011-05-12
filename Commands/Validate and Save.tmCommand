@@ -14,7 +14,7 @@ if compiler_ruby.length == 0
   compiler_ruby = ENV['TM_RUBY'] || `which ruby`.strip
 end
 
-result = `#{compiler_ruby} -wc "$TM_FILEPATH" 2&gt;&amp;1`
+result = `#{compiler_ruby} -wc "$TM_FILEPATH" 2&gt;&amp;1 | egrep -v -e 'useless use of == in void context'`
 print result
 TextMate.go_to :line =&gt; $1 if result =~ /:(\d+):/
 </string>
